@@ -1,0 +1,173 @@
+:root {
+    /* Adjusted background to be slightly darker/deeper to let the PFP pop */
+    --main-bg: radial-gradient(circle, #0f0518 0%, #000000 100%);
+    /* Shifted to a brighter magenta-purple to match the PFP aura */
+    --accent-glow: #d000ff;
+    --content-position: center;
+    /* flex-start | center | flex-end */
+    /* Slower speed for a more "premium" floating feel */
+    --float-speed: 6s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    /* Removes "square" tap highlight on mobile */
+}
+
+body {
+    background: var(--main-bg);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* optional, keeps the view clean */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: var(--content-position);
+    text-align: var(--content-position);
+    width: 100%;
+    max-width: 550px;
+    padding: 20px;
+
+    /* Antigravity Motion */
+    animation: antigravity-float var(--float-speed) ease-in-out infinite;
+}
+
+/* Profile Image */
+.profile-wrapper {
+    margin-bottom: 25px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--accent-glow);
+    box-shadow: 0 0 20px var(--accent-glow);
+    object-fit: cover;
+
+    /* Pulse brightness */
+    animation: glow-pulse 3s infinite alternate;
+}
+
+/* Typography */
+.primary-text {
+    font-weight: 700;
+    /* Bold */
+    font-size: 28px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(188, 19, 254, 0.4);
+}
+
+.secondary-text {
+    font-size: 14px;
+    color: #b0b0b0;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+/* YouTube Entry Point */
+.youtube-entry {
+    display: block;
+    margin-bottom: 30px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.yt-button {
+    /* Made it a pill shape like the Main CTA */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
+    /* Using gap for icon spacing if we add text, though SVG is alone for now */
+    gap: 10px;
+}
+
+.youtube-entry:hover {
+    transform: scale(1.1);
+    /* 10% scale up */
+}
+
+/* Main CTA Button */
+.main-cta {
+    display: inline-block;
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    /* Removes the "square" focus ring */
+}
+
+a:focus,
+button:focus {
+    outline: none;
+}
+
+.main-cta:hover {
+    transform: scale(1.1);
+    /* 10% scale up */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* Animations */
+@keyframes antigravity-float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        filter: brightness(1);
+        box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    100% {
+        filter: brightness(1.3);
+        box-shadow: 0 0 35px var(--accent-glow);
+    }
+}
+
+/* Responsive tweaks */
+@media (max-width: 400px) {
+    .primary-text {
+        font-size: 24px;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+    }
+}
